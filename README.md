@@ -1,4 +1,4 @@
-# Typed Jsonapi Datastore  [![Build Status](https://travis-ci.org/git@github.com:EricPMulligan/typed-jsonapi-datastore.svg?branch=master)](https://travis-ci.org/git@github.com:EricPMulligan/typed-jsonapi-datastore)
+# Typed Jsonapi Datastore  [![Build Status](https://travis-ci.org/EricPMulligan/typed-jsonapi-datastore.svg?branch=master)](https://travis-ci.org/EricPMulligan/typed-jsonapi-datastore)
 
 
 The type definition for [`jsonapi-datastore`](https://github.com/beauby/jsonapi-datastore.git)
