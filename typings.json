@@ -1,0 +1,12 @@
+{
+  "name": "jsonapi-datastore",
+  "main": "dist/node-jsonapi-datastore.d.ts",
+  "homepage": "https://github.com/beauby/jsonapi-datastore#readme",
+  "version": "0.4.0-beta",
+  "globalDevDependencies": {
+    "node": "registry:env/node#6.0.0+20160610031852"
+  },
+  "devDependencies": {
+    "blue-tape": "registry:npm/blue-tape#0.2.0+20160614064951"
+  }
+}
