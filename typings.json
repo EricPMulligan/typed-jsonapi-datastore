@@ -7,6 +7,9 @@
     "node": "registry:env/node#6.0.0+20160610031852"
   },
   "devDependencies": {
-    "blue-tape": "registry:npm/blue-tape#0.2.0+20160614064951"
+    "chai": "registry:npm/chai#3.5.0+20160415060238"
+  },
+  "globalDependencies": {
+    "mocha": "registry:dt/mocha#2.2.5+20160317120654"
   }
 }
