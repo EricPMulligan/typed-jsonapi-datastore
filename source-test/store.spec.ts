@@ -1,7 +1,4 @@
-import {JsonApiPayload} from "jsonapi-datastore";
-import {JsonApiDataStore} from 'jsonapi-datastore';
-import {JsonApiDataStoreModel} from "jsonapi-datastore";
-import {JsonApiDataStoreModelWithMeta} from "jsonapi-datastore";
+import { JsonApiDataStore, JsonApiDataStoreModelWithMeta, JsonApiPayload, JsonApiDataStoreModel } from "jsonapi-datastore";
 
 var fs = require('fs'),
     expect = require('chai').expect;

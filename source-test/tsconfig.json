@@ -5,6 +5,6 @@
   },
   "files": [
     "../typings/index.d.ts",
-    "../index.d.ts"
+    "../out/dist/index.d.ts"
   ]
 }
