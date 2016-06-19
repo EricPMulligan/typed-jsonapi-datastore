@@ -6,7 +6,7 @@ notifications:
     on_failure: change
 
 node_js:
-  - "5.9"
+  - "5.9.0"
 
 script:
   - npm run lint+build+test
