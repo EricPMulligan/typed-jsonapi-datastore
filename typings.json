@@ -1,15 +1,15 @@
 {
   "name": "jsonapi-datastore",
-  "main": "dist/node-jsonapi-datastore.d.ts",
+  "main": "dist/jsonapi-datastore.d.ts",
   "homepage": "https://github.com/beauby/jsonapi-datastore#readme",
   "version": "0.4.0-beta",
   "globalDevDependencies": {
+    "mocha": "registry:dt/mocha#2.2.5+20160317120654",
     "node": "registry:env/node#6.0.0+20160610031852"
   },
   "devDependencies": {
     "chai": "registry:npm/chai#3.5.0+20160415060238"
   },
   "globalDependencies": {
-    "mocha": "registry:dt/mocha#2.2.5+20160317120654"
   }
 }

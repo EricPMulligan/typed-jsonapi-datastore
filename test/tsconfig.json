@@ -5,6 +5,6 @@
   },
   "files": [
     "../typings/index.d.ts",
-    "../out/dist/node-jsonapi-datastore.d.ts"
+    "../out/dist/jsonapi-datastore.d.ts"
   ]
 }

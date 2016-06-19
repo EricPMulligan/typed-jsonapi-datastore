@@ -1,13 +1,16 @@
+import {JsonApiDataStoreModel} from "jsonapi-datastore";
+import {JsonApiDataStore} from "jsonapi-datastore";
+import {JsonApiResource} from "jsonapi-datastore";
+import {JsonApiPayload} from "jsonapi-datastore";
+
 var fs = require('fs'),
     expect = require('chai').expect;
-
-import {JsonApiDataStore, JsonApiDataStoreModel} from 'jsonapi-datastore';
 
 describe('JsonApiDataModel', () => {
   describe('.serialize()', () => {
     it('should serialize a bare model', () => {
-      let serializedModel:JsonApiDataStoreModel = new JsonApiDataStoreModel('datatype', 1337).serialize();
-      expect(serializedModel).to.deep.eq({
+      let serializedModel:JsonApiPayload = new JsonApiDataStoreModel('datatype', 1337).serialize();
+      expect(serializedModel).to.deep.eq(<JsonApiPayload>{
         data: {
           id: 1337,
           type: 'datatype'
@@ -16,8 +19,8 @@ describe('JsonApiDataModel', () => {
     });
 
     it('should serialize all attributes by default', () => {
-      let store = new JsonApiDataStore<any>(),
-          payload = {
+      let store:JsonApiDataStore = new JsonApiDataStore(),
+          payload:JsonApiPayload = <JsonApiPayload>{
             data: {
               type: 'article',
               id: 1337,
@@ -28,14 +31,14 @@ describe('JsonApiDataModel', () => {
             }
           };
 
-      var article = store.sync(payload);
-      var serializedArticle = article.serialize();
+      var article:JsonApiDataStoreModel = store.sync(payload);
+      var serializedArticle:JsonApiPayload = article.serialize();
       expect(serializedArticle).to.deep.eq(payload);
     });
 
     it('should serialize all relationships by default', () => {
       let store = new JsonApiDataStore(),
-          payload = {
+          payload = <JsonApiPayload>{
             data: {
               type: 'article',
               id: 1337,
@@ -53,14 +56,14 @@ describe('JsonApiDataModel', () => {
             }
           };
 
-      let article = store.sync(payload);
-      let serializedArticle = article.serialize();
+      let article:JsonApiDataStoreModel = store.sync(payload);
+      let serializedArticle:JsonApiPayload = article.serialize();
       expect(serializedArticle).to.deep.eq(payload);
     });
 
     it('should serialize only specified attributes', () => {
       let store = new JsonApiDataStore(),
-          payload = {
+          payload = <JsonApiPayload>{
             data: {
               type: 'article',
               id: 1337,
@@ -71,14 +74,14 @@ describe('JsonApiDataModel', () => {
             }
           };
 
-      let article = store.sync(payload);
-      let serializedArticle = article.serialize({ attributes: [ 'author' ] });
+      let article:JsonApiDataStoreModel = store.sync(payload);
+      let serializedArticle:any = article.serialize({ attributes: [ 'author' ] });
       expect(serializedArticle.data.attributes.title).to.be.undefined;
     });
 
     it('should serialize only specified relationships', () => {
       let store = new JsonApiDataStore(),
-          payload = {
+          payload = <JsonApiPayload>{
             data: {
               type: 'article',
               id: 1337,
@@ -102,20 +105,20 @@ describe('JsonApiDataModel', () => {
             }
           };
 
-      let article = store.sync(payload);
-      let serializedArticle = article.serialize({ relationships: [ 'author' ] });
+      let article:JsonApiDataStoreModel = store.sync(payload);
+      let serializedArticle:any = article.serialize({ relationships: [ 'author' ] });
       expect(serializedArticle.data.relationships.tags).to.be.undefined;
     });
 
     it('should not serialize the id on fresh models', () => {
-      let article = new JsonApiDataStoreModel('article');
-      let serializedArticle = article.serialize();
+      let article:JsonApiDataStoreModel = new JsonApiDataStoreModel('article');
+      let serializedArticle:any = article.serialize();
       expect(serializedArticle.data.id).to.be.undefined;
     });
 
     it('should handle empty to-one relationships', () => {
-      let store = new JsonApiDataStore(),
-          payload = {
+      let store:JsonApiDataStore = new JsonApiDataStore(),
+          payload = <JsonApiPayload>{
             data: {
               type: 'article',
               id: 1337,
@@ -127,8 +130,8 @@ describe('JsonApiDataModel', () => {
             }
           };
 
-      let article = store.sync(payload);
-      let serializedArticle = article.serialize();
+      let article:JsonApiDataStoreModel = store.sync(payload);
+      let serializedArticle:any = article.serialize();
       expect(serializedArticle.data.relationships.author.data).to.be.null;
     });
   });
@@ -136,7 +139,7 @@ describe('JsonApiDataModel', () => {
   describe('.setAttribute()', () => {
     context('when attribute is not set', () => {
       it('should add a new attribute', () => {
-        let article = new JsonApiDataStoreModel('article');
+        let article:JsonApiDataStoreModel = new JsonApiDataStoreModel('article');
         article.setAttribute('title', 'Cool article');
         expect(article.title).to.eq('Cool article');
       });
