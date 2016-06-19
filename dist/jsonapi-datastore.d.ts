@@ -1,5 +1,5 @@
 declare module 'jsonapi-datastore' {
-  export class JsonApiDataStore {
+  class JsonApiDataStore {
     constructor();
     destroy(model:JsonApiDataStoreModel):void;
     find(type:string, id:string | number):JsonApiDataStoreModel;
@@ -7,15 +7,32 @@ declare module 'jsonapi-datastore' {
     reset():void;
     initModel(type:string, id:string | number):JsonApiDataStoreModel;
     syncRecord(rec:JsonApiResource):JsonApiDataStoreModel;
-    syncWithMeta(payload:JsonApiPayload):JsonApiPayload;
-    sync(payload:JsonApiPayload):any;
+    syncWithMeta(payload:JsonApiPayload):JsonApiDataStoreModelWithMeta;
+    sync(payload:JsonApiPayload):JsonApiDataStoreModel | Array<JsonApiDataStoreModel>;
+    graph:JsonApiDataStoreGraph;
   }
 
-  export class JsonApiDataStoreModel {
+  interface JsonApiDataStoreGraph {
+    [paramName:string]:any;
+  }
+
+  class JsonApiDataStoreModel {
     constructor(type:string, id?:string | number);
     serialize(options?:JsonApiSerializationOptions):JsonApiPayload;
     setAttribute(attrName:string, value:any):void;
     setRelationship(relName:string, models:any):void;
+    [paramName:string]:any;
+    id:number | string;
+    _type:string;
+    _attributes:Array<string>;
+    _relationships:Array<string>;
+    _placeHolder:boolean;
+    meta:any;
+  }
+
+  interface JsonApiDataStoreModelWithMeta {
+    data:JsonApiDataStoreModel | Array<JsonApiDataStoreModel>;
+    meta:any;
   }
 
   interface JsonApiError {
@@ -44,7 +61,7 @@ declare module 'jsonapi-datastore' {
   }
 
   interface JsonApiResourceAttributes {
-    [attributeName:string]:any;
+    [propName:string]:any;
   }
 
   interface JsonApiResourceRelationships {
