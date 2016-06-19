@@ -5,7 +5,7 @@
     "lint": "echo linting... && tslint \"**/*.ts\" -e \"source/**\" -e \"source-test/**\" -e \"out/**\" -e \"node_modules/**\" -e \"typings/**\"",
     "browser-test": "echo running browser tests... && echo no browser test",
     "source-test": "echo running source tests... &&  echo no source test",
-    "test": "echo running server tests... && cd test && ../node_modules/.bin/mocha --require ts-node/register **/*.spec.ts",
+    "test": "echo running server tests... && cd source-test && ../node_modules/.bin/mocha --require ts-node/register **/*.ts",
     "watch": "onchange -w \"**/*.ts\" -i -e \"out/**\" -- npm -s run build+test",
     "publish": "npm -s run lint+build+test && echo please publish to typings/registry",
     "all-tests": "npm test",
